@@ -1,7 +1,7 @@
 ﻿namespace Shared.Common.Sources.Extensions;
 
 /// <summary>
-/// <see cref="IEnumerable{T}"/> extension methods
+/// <see cref="IEnumerable{T}"/> extension methods. Here there are collection generic extension methods.
 /// </summary>
 public static class EnumerableExtensions
 {

@@ -5,13 +5,12 @@ using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Infraestructure.Relational.Context;
 
-using Shared.Common.Sources.Exceptions;
 using Shared.Common.Sources.Extensions;
 
 namespace Ecommerce.Infraestructure.Relational.Implementations;
 
 /// <summary>
-/// <see cref="GenericRepository{Entity}"/> class
+/// <see cref="IGenericRepository{Entity}"/> implementation
 /// </summary>
 /// <typeparam name="Entity"></typeparam>
 public sealed class GenericRepository<Entity> 
@@ -55,9 +54,6 @@ public sealed class GenericRepository<Entity>
     public async Task<Entity> Create(Entity model)
     {
         EntityEntry<Entity> entity = await _table.AddAsync(model);
-        if (await Commit())
-            throw new InternalServerException();
-
         return entity.Entity;
     }
 
@@ -66,9 +62,6 @@ public sealed class GenericRepository<Entity>
     {
         Entity finded = await _table.FindAsync(model.Id);
         _context.Entry(finded).CurrentValues.SetValues(model);
-
-        if (await Commit())
-            throw new InternalServerException();
     }
 
     /// <inheritdoc/>
@@ -76,15 +69,6 @@ public sealed class GenericRepository<Entity>
     {
         Entity finded = await _table.FindAsync(id);
         _table.Remove(finded);
-
-        if (await Commit())
-            throw new InternalServerException();
-    }
-
-    private async Task<bool> Commit()
-    {
-        int changes = await _context.SaveChangesAsync();
-        return changes > 0;
     }
 
     #endregion

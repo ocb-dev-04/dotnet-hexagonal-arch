@@ -1,13 +1,16 @@
-﻿using Ecommerce.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Ecommerce.Domain.Enums;
+using Ecommerce.Domain.Entities;
+using Ecommerce.Domain.Extensions;
+using Ecommerce.Domain.Interfaces;
 using Ecommerce.Infraestructure.Relational.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Infraestructure.Relational.Implementations;
 
+/// <summary>
+/// <see cref="IProductRepository"/> implementation
+/// </summary>
 public sealed class ProductRepository : BaseRepository, IProductRepository
 {
 	#region Ctor
@@ -17,5 +20,16 @@ public sealed class ProductRepository : BaseRepository, IProductRepository
 	{
 	}
 
-	#endregion
+    #endregion
+
+    /// <inheritdoc/>
+    public async Task<HashSet<Product>> GetByPrice(double price, PriceFilterOptions filterOption)
+    {
+        List<Product> collection = await _context.Products
+                                    .AsNoTracking()
+                                    .FilterByPrice(price, filterOption)
+                                    .ToListAsync();
+
+        return collection.ToHashSet();
+    }
 }
