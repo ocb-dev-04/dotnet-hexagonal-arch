@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{8997B940-FBA2-406D-8B75-67D6131045E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{355E5A65-24E4-4736-B46E-5F44862D4A15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{66E352B7-4C1D-4DED-8477-E0B09D07767C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.API", "clients\Ecommerce.API\Ecommerce.API.csproj", "{54CB1260-F253-4D4B-9180-140D5C350D70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54CB1260-F253-4D4B-9180-140D5C350D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CB1260-F253-4D4B-9180-140D5C350D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CB1260-F253-4D4B-9180-140D5C350D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CB1260-F253-4D4B-9180-140D5C350D70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54CB1260-F253-4D4B-9180-140D5C350D70} = {66E352B7-4C1D-4DED-8477-E0B09D07767C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF854BFA-9A37-47C5-ACC7-F37E63076152}
+	EndGlobalSection
+EndGlobal
