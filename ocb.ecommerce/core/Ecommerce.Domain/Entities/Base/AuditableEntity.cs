@@ -8,8 +8,8 @@ public class AuditableEntity
     public Guid Id { get; set; }
 
     [Required]
-    public DateTimeOffset CreateAt { get; set; }
+    public DateTimeOffset Created { get; set; }
 
     [Required]
-    public DateTimeOffset ModifiedAt { get; set; }
+    public DateTimeOffset Modified { get; set; }
 }
