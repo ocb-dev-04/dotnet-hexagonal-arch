@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Ecommerce.Domain.DTOs;
 
-namespace Ecommerce.Domain.DTOs;
-
-public class FlatProductDTO : AuditableDTO
+public sealed class FlatProductDTO : FlatAuditableDTO
 {
+    public string Name { get; set; }
+
+    public string ImageUrl { get; set; } = string.Empty;
+
+    public double Price { get; set; }
+
 }
