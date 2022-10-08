@@ -1,12 +1,12 @@
-﻿using Ecommerce.Domain.Entities;
+﻿using AutoMapper;
+
+using Ecommerce.Domain.DTOs;
+using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Interfaces;
 using Ecommerce.Infraestructure.Relational.Context;
 
 namespace Ecommerce.Infraestructure.Relational.Implementations;
 
-/// <summary>
-/// <see cref="IUnitOfWork"/> implementation
-/// </summary>
 public sealed class UnitOfWork : BaseRepository, IUnitOfWork
 {
     #region Properties & Ctor
@@ -19,18 +19,18 @@ public sealed class UnitOfWork : BaseRepository, IUnitOfWork
 
     #region Generic props
 
-    private readonly IGenericRepository<Product> _productGenericRepository;
-   
+    private readonly IGenericRepository<Product, ProductDTO> _productGenericRepository;
+    private readonly IGenericRepository<Product, FlatProductDTO> _flatProductGenericRepository;
+
     #endregion
 
-    /// <summary>
-    /// <see cref="UnitOfWork"/> constructor
-    /// </summary>
-    /// <param name="context"></param>
-    public UnitOfWork(MainDbContext context) : base(context)
-    {
+    #endregion
 
-    }
+    #region Ctor
+
+    public UnitOfWork(MainDbContext context, IMapper mapper) 
+        : base(context, mapper)
+    {}
 
     #endregion
 
@@ -42,11 +42,11 @@ public sealed class UnitOfWork : BaseRepository, IUnitOfWork
 
     #region Generic repositories
 
-    public IGenericRepository<Product> ProductGenericRepository => _productGenericRepository ?? new GenericRepository<Product>(_context);
+    public IGenericRepository<Product, ProductDTO> ProductGenericRepository => _productGenericRepository ?? new GenericRepository<Product, ProductDTO>(_context, _mapper);
+    public IGenericRepository<Product, FlatProductDTO> FlatProductGenericRepository => _flatProductGenericRepository ?? new GenericRepository<Product, FlatProductDTO>(_context, _mapper);
    
     #endregion
 
-    /// <inheritdoc/>
     public async Task<bool> Commit()
     {
         int changes = await _context.SaveChangesAsync();

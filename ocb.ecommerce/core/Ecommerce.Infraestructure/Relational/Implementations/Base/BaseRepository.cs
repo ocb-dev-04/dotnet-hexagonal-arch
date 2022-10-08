@@ -1,22 +1,18 @@
-﻿using Ardalis.GuardClauses;
+﻿using AutoMapper;
+using Ardalis.GuardClauses;
 
 using Ecommerce.Infraestructure.Relational.Context;
 
 namespace Ecommerce.Infraestructure.Relational.Implementations;
 
-/// <summary>
-/// <see cref="BaseRepository"/> inheritable class to use in specific repositories
-/// </summary>
 public class BaseRepository
 {
     protected readonly MainDbContext _context;
+	protected readonly IMapper _mapper;
 
-	/// <summary>
-	/// <see cref="BaseRepository"/> constructor
-	/// </summary>
-	/// <param name="context"></param>
-	public BaseRepository(MainDbContext context)
+	public BaseRepository(MainDbContext context, IMapper mapper)
 	{
 		this._context = Guard.Against.Null(context, nameof(context));
+		this._mapper = Guard.Against.Null(mapper, nameof(mapper));
 	}
 }

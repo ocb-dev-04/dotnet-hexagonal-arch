@@ -25,7 +25,7 @@ public sealed class GenericRepository<Entity, DTO>
     private const int pageGrow = 20;
 
     public GenericRepository(MainDbContext context, IMapper mapper)
-        : base(context)
+        : base(context, mapper)
     {
         _table = _context.Set<Entity>();
         _mapper = Guard.Against.Null(mapper, nameof(mapper));

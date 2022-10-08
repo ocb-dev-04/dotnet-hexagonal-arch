@@ -1,4 +1,5 @@
-﻿using Ecommerce.Domain.Entities;
+﻿using Ecommerce.Domain.DTOs;
+using Ecommerce.Domain.Entities;
 
 namespace Ecommerce.Domain.Interfaces;
 
@@ -12,7 +13,8 @@ public interface IUnitOfWork
 
     #region Generic repositories
 
-    public IGenericRepository<Product> ProductGenericRepository { get; }
+    public IGenericRepository<Product, ProductDTO> ProductGenericRepository { get; }
+    public IGenericRepository<Product, FlatProductDTO> FlatProductGenericRepository { get; }
    
     #endregion
 
